@@ -1,8 +1,27 @@
 created: 20230616091751657
-modified: 20230616091836267
+modified: 20230617073955704
 page-cover: http://tva1.sinaimg.cn/large/008ueetGgy1hf06jq1w8hj31z41401kx.jpg
 tags: 
 title: Mainpage
 type: text/vnd.tiddlywiki
 
-你好
+<div style="max-width: 800px; height: 230px; margin: 0 auto;">
+    <center style="font-size:20px;">
+        <$button
+            set="$:/state/heatmap!!year"
+            setTo={{{ [{$:/state/heatmap!!year}subtract[1]!match[-1]] ~[<now YYYY>subtract[1]] }}}
+            class="tc-btn-invisible tc-tiddlylink"
+
+        >
+            ◄
+        </$button> ''<$text text={{{[{$:/state/heatmap!!year}match[]then<now YYYY>else{$:/state/heatmap!!year}]}}}/>'' <$button
+            set="$:/state/heatmap!!year"
+            setTo={{{ [{$:/state/heatmap!!year}add[1]!match[1]] ~[<now YYYY>add[1]] }}}
+            class="tc-btn-invisible tc-tiddlylink"
+
+        >
+            ►
+        </$button>
+    </center>
+    <$echarts $tiddler="$:/plugins/Gk0Wk/echarts/addons/GitHubHeatMap.js" $width="100%" $height="100%" year={{$:/state/heatmap!!year}} subfilter="[all[tiddlers]!is[shadow]!is[system]!field:calendarEntry[yes]]" />
+</div>
